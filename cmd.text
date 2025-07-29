@@ -1,0 +1,59 @@
+ng new shell --routing --style=scss
+cd shell
+ng add @angular-architects/module-federation --project shell
+------------------------------------------------------------
+cd ..
+ng new mfe1 --routing --style=scss
+cd mfe1
+ng add @angular-architects/module-federation --project mfe1
+-----------------------------------------------------------
+cd ..
+ng new mfe2 --routing --style=scss
+cd mfe2
+ng add @angular-architects/module-federation --project mfe2
+-----------------------------------------------------------
+/* In mfe1 */
+ng generate component mfe1-component
+
+expose a component:
+# In mfe1/src/app
+ng generate component mfe1-component
+
+Edit webpack.config.js to expose it:
+exposes: {
+  './Mfe1Component': './src/app/mfe1-component/mfe1-component.component.ts',
+},
+
+Repeat similarly in mfe2.
+------------------------
+Now Load MFEs in Shell Using Module Federation
+In app.routes.ts
+
+## configure all required routes
+
+npm install @angular-architects/module-federation --save
+--------------------------------------------------------
+
+Run All Applications
+
+# In separate terminals
+ng serve --project mfe1 --port 4300
+ng serve --project mfe2 --port 4400
+ng serve --project shell --port 4200
+
+--------------------------------------------------------
+/* zone.js error*/
+
+In mfe1
+1. npm install zone.js
+2. create manually src/polyfills.ts
+3. add import 'zone.js';
+4. check angular.json under:
+"architect": {
+  "build": {
+    "options": {
+      "polyfills": "src/polyfills.ts"
+    }
+  }
+}
+-------------------------------------
