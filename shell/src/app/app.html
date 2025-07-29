@@ -1,0 +1,25 @@
+<h1 class="title">Shell Application</h1>
+
+<nav class="nav">
+  <a routerLink="/mfe1" class="nav-link">Load MFE1</a>
+  <button (click)="loadMFEComponent()" class="nav-button">Load MFE Component</button>
+  <button (click)="loadMFERemoteEntry()" class="nav-button">Load MFE Remote Entry</button>
+</nav>
+
+<hr />
+
+<div class="actions">
+  <button (click)="loadMFE2()" class="action-button">Load MFE2</button>
+  <hr />
+  <button (click)="loadReactMEF()" class="action-button">Load React MFE</button>
+</div>
+
+<hr />
+
+<router-outlet></router-outlet>
+
+<div #mfeContainerComponent class="mfe-container"></div>
+<div #mfeContainerRemoteEntry class="mfe-container"></div>
+<div #mfeContainer1 class="mfe-container"></div>
+<div #mfeContainer class="mfe-container"></div>
+<div #mfeReactContainer class="mfe-container"></div>
